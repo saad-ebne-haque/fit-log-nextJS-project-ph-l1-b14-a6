@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Oswald, Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/shared/Navbar";
+import Navbar from "@/components/shared/navbar/Navbar";
+import Footer from "@/components/shared/footer/Footer";
 
 const oswald = Oswald({
   variable: "--font-oswald",
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main className="grow container mx-auto py-12">
           {children}
         </main>
+        <Footer></Footer>
       </body>
     </html>
   );
