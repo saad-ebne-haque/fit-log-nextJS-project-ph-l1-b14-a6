@@ -21,7 +21,7 @@ const Banner = () => {
                         FitLog is a dark, no-nonsense gym companion: pick a lift, lock it 
                         into {"today's"} plan, and watch the {"week's"} work add up.
                     </p>
-                    <button className="btn bg-brand text-xs text-background font-bold"> <a href="#">BROWSE WORKOUTS</a></button>
+                <a className="btn bg-brand text-xs text-background font-bold" href="#the-library">BROWSE WORKOUTS</a>
                 </div>
                 <Image
                     src='/assets/banner.png'
