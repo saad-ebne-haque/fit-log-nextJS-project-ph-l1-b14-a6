@@ -38,8 +38,8 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        <a className="btn btn-ghost rounded-full text-[#d1d5db] font-medium">Plan <span className="badge bg-brand text-background p-1 rounded-full">0</span></a>
-                        <a className="btn btn-ghost rounded-full text-dim font-medium ">Saved <span className="badge badge-outline p-1 rounded-full border-2 border-[#2D313B]">0</span></a>
+                        <button className="btn btn-ghost rounded-full text-[#d1d5db] font-medium">Plan <span className="badge badge-lg bg-brand text-background  rounded-full">0</span></button>
+                        <a className="btn btn-ghost rounded-full text-dim font-medium ">Saved <span className="badge badge-outline badge-lg bg-transparent border-[1.5px] border-[#2D313B] rounded-full">0</span></a>
                     </div>
                 </div>
             </nav>
