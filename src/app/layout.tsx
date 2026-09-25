@@ -23,11 +23,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      data-theme="dark"
       className={`${oswald.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Navbar></Navbar>
-        <main className="grow">
+        <main className="grow container mx-auto py-12">
           {children}
         </main>
       </body>

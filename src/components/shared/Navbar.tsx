@@ -12,7 +12,7 @@ const Navbar = () => {
     return (
         <>
 
-            <nav className="bg-background shadow-sm border-b border-[#1c1f26] shadow-[#1c1f26]">
+            <nav className="bg-background shadow-sm border-b border-[#1c1f26] shadow-[#1c1f26] sticky top-0 z-100">
                 <div className="navbar container mx-auto">
                     <div className="navbar-start">
                         <div className="dropdown">
