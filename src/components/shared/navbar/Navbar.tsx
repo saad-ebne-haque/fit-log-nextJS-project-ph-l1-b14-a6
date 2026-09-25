@@ -1,6 +1,7 @@
 import Image from "next/image";
 import NavMenus from "./NavMenus";
 import Link from "next/link";
+import NavbarBTNs from "./NavbarBTNs";
 
 
 
@@ -38,8 +39,7 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="navbar-end">
-                        <button className="btn btn-ghost rounded-full text-[#d1d5db] font-medium">Plan <span className="badge badge-lg bg-brand text-background  rounded-full">0</span></button>
-                        <a className="btn btn-ghost rounded-full text-dim font-medium ">Saved <span className="badge badge-outline badge-lg bg-transparent border-[1.5px] border-[#2D313B] rounded-full">0</span></a>
+                     <NavbarBTNs></NavbarBTNs>
                     </div>
                 </div>
             </nav>

@@ -16,7 +16,7 @@ const EmptyPlan = () => {
             >
                 <h3 className="font-heading font-bold text-xl tracking-wide pb-2">NOTHING HERE YET</h3>
                 <p className="text-xs text-dim pb-6">Browse the library and add a lift to get today moving.</p>
-                <Link href='/'><button className="btn text-xs font-semibold bg-brand text-background rounded-full">Go to workouts</button></Link>
+                <Link href='/#the-library'><button className="btn text-xs font-semibold bg-brand text-background rounded-full">Go to workouts</button></Link>
             </div>
 
         </>

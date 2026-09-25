@@ -18,16 +18,17 @@ const Banner = () => {
                         EVERY SET.
                     </h1>
                     <p className="text-dim lg:leading-relaxed text-xs lg:text-[16px] max-w-lg">
-                        FitLog is a dark, no-nonsense gym companion: pick a lift, lock it 
+                        FitLog is a dark, no-nonsense gym companion: pick a lift, lock it
                         into {"today's"} plan, and watch the {"week's"} work add up.
                     </p>
-                <a className="btn bg-brand text-xs text-background font-bold" href="#the-library">BROWSE WORKOUTS</a>
+                    <a className="btn bg-brand text-xs text-background font-bold" href="#the-library">BROWSE WORKOUTS</a>
                 </div>
                 <Image
                     src='/assets/banner.png'
                     alt="Fit log Hero/Banner Image"
                     width={335}
                     height={335}
+                    priority
                 ></Image>
             </section>
 
