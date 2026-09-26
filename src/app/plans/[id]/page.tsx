@@ -1,7 +1,9 @@
 
 import BookDetailsPageBtns from "@/components/planDetailsPage/PlanDetailsPageBtns";
 import FitDataType from "@/types/FitDataType.type";
+import { AlertCircle, ArrowLeft } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export interface BookDetailsPagePageProps {
     params: Promise<{ id: string }>
@@ -119,7 +121,22 @@ export default async function BookDetailsPagePage({ params }: BookDetailsPagePag
 
 
             <>
-                Notfound
-            </>
+            <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4 py-16">
+                <div className="bg-[#151922] border border-[#232834] p-6 rounded-3xl max-w-md w-full shadow-xl flex flex-col items-center space-y-4">
+                    <div className="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 mb-2">
+                        <AlertCircle className="w-8 h-8" />
+                    </div>
+                    <h2 className="text-2xl font-bold font-heading">Plan Not Found</h2>
+                    <p className="text-dim text-sm">
+                        The fitness plan you are looking for does not exist or may have been removed.
+                    </p>
+                    <Link 
+                        href="/" 
+                        className="btn bg-brand text-black hover:bg-brand/80 rounded-full w-full mt-4 flex items-center justify-center gap-2 font-semibold">
+                        <ArrowLeft className="w-4 h-4" /> Back to Home
+                    </Link>
+                </div>
+            </div>
+        </>
     )
 }
