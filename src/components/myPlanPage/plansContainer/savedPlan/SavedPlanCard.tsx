@@ -34,7 +34,7 @@ export default function SavedPlanCard({ plan }: SavedPlanCardProps) {
 
                 </div>
                 <div className="flex items-center gap-3">
-                    <Link href={`/books/${plan.id}`} className="btn btn-ghost text-xs font-normal border border-[#374151] rounded-full">View Details</Link>
+                    <Link href={`/plans/${plan.id}`} className="btn btn-ghost text-xs font-normal border border-[#374151] rounded-full">View Details</Link>
 
 
                     <RemoveBtn plan={plan} removeFrom="savedPlans"></RemoveBtn>

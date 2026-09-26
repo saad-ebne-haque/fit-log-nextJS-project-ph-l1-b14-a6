@@ -1,14 +1,16 @@
+'use client';
 
+import { FitContext, FitContextType } from "@/contexts/FitContext";
+import { useContext } from "react";
 
-
-
-
-
-// export interface StatsProps {
-//     prop: string
-// }
 
 export default function Stats() {
+
+    const { myPlans, savedPlans, toggle } = useContext(FitContext) as FitContextType;
+
+    const totalDuration = (toggle ? myPlans : savedPlans).map(plan => plan.duration).reduce((total, duration) => total + duration, 0);
+    const totalCalories = (toggle ? myPlans : savedPlans).map(plan => plan.caloriesBurned).reduce((total, caloriesBurned) => total + caloriesBurned, 0);
+
 
     return (
         <>
@@ -16,22 +18,22 @@ export default function Stats() {
 
                 <div className="space-y-1.5 w-full">
                     <p className="text-dim text-xs">Exercises</p>
-                    <h1 className="text-4xl font-heading font-bold text-brand">0</h1>
+                    <h1 className="text-4xl font-heading font-bold text-brand">{toggle ? myPlans.length : savedPlans.length}</h1>
                 </div>
 
-               
+
 
                 <div className="space-y-1.5 w-full px-8 border-x border-[#232732]">
                     <p className="text-dim text-xs">Minutes</p>
-                    <h1 className="text-4xl font-heading font-bold">0</h1>
+                    <h1 className="text-4xl font-heading font-bold">{totalDuration}</h1>
                 </div>
 
 
-              
+
 
                 <div className="space-y-1.5 w-full pl-8">
                     <p className="text-dim text-xs">Calories</p>
-                    <h1 className="text-4xl font-heading font-bold">0</h1>
+                    <h1 className="text-4xl font-heading font-bold">{totalCalories}</h1>
                 </div>
 
             </div>
