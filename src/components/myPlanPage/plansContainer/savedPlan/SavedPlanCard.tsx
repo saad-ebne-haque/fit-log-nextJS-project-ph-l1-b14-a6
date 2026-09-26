@@ -10,8 +10,8 @@ export interface SavedPlanCardProps {
 export default function SavedPlanCard({ plan }: SavedPlanCardProps) {
 
     return (
-        <>
-            <div className="border border-[#232732] bg-[#14171E] rounded-2xl p-4 flex items-center justify-between">
+        <div className="border border-[#232732] bg-[#14171E] rounded-2xl p-4 flex items-center justify-between gap-4 md:gap-0">
+            <div className="flex md:items-center justify-between w-full flex-col md:flex-row  gap-4 ">
                 <div className="flex items-center gap-4">
                     <div className="rounded-xl w-36 h-20  overflow-hidden">
                         <div
@@ -33,13 +33,14 @@ export default function SavedPlanCard({ plan }: SavedPlanCardProps) {
 
 
                 </div>
-                <div className="flex items-center gap-3">
-                    <Link href={`/plans/${plan.id}`} className="btn btn-ghost text-xs font-normal border border-[#374151] rounded-full">View Details</Link>
+                <div className="flex items-center gap-3 justify-center">
+                    <Link href={`/plans/${plan.id}`} className="btn btn-ghost text-xs font-normal border border-[#374151] rounded-full flex-1">View Details</Link>
 
 
-                    <RemoveBtn plan={plan} removeFrom="savedPlans"></RemoveBtn>
+                    <RemoveBtn plan={plan} removeFrom="savedPlans" clsName=""></RemoveBtn>
                 </div>
             </div>
-        </>
+            
+        </div>
     )
 }

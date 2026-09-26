@@ -28,9 +28,9 @@ export default function SortDropdown() {
                         {sortBy} <ChevronDown className="w-3.5" />
                     </div>
                     <ul tabIndex={-1} className="dropdown-content menu z-1 w-52 p-2 shadow-sm bg-[#13161d] border border-[#232732] rounded-lg">
-                        <li onClick={() => setSortBy('Duration')}><a className={`${sortBy === 'Duration' ? 'bg-brand text-[#0C0D10] font-semibold' : ''}`}>Duration</a></li>
-                        <li onClick={() => setSortBy('Calories')}><a className={`${sortBy === 'Calories' ? 'bg-brand text-[#0C0D10] font-semibold' : ''}`}>Calories </a></li>
-                        <li onClick={() => setSortBy('Rating')}><a className={`${sortBy === 'Rating' ? 'bg-brand text-[#0C0D10] font-semibold' : ''}`}>Rating</a></li>
+                        <li onClick={() => setSortBy('Duration')}><a className={`btn rounded-lg  text-xs ${sortBy === 'Duration' ? 'bg-[#1f242d] border border-[#2b303d] font-bold' : 'btn-ghost text-dim font-normal'}`}>Duration</a></li>
+                        <li onClick={() => setSortBy('Calories')}><a className={`btn rounded-lg  text-xs ${sortBy === 'Calories' ? 'bg-[#1f242d] border border-[#2b303d] font-bold' : 'btn-ghost text-dim font-normal'}`}>Calories </a></li>
+                        <li onClick={() => setSortBy('Rating')}><a className={`btn rounded-lg  text-xs ${sortBy === 'Rating' ? 'bg-[#1f242d] border border-[#2b303d] font-bold' : 'btn-ghost text-dim font-normal'}`}>Rating</a></li>
                     </ul>
                 </div>
             </div>

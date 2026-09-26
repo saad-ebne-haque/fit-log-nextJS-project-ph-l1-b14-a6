@@ -1,4 +1,5 @@
-import BookDetailsPageBtns from "@/components/bookDetailsPage/BookDetailsPageBtns";
+
+import BookDetailsPageBtns from "@/components/planDetailsPage/PlanDetailsPageBtns";
 import FitDataType from "@/types/FitDataType.type";
 import Image from "next/image";
 
@@ -9,7 +10,7 @@ export interface BookDetailsPagePageProps {
 export default async function BookDetailsPagePage({ params }: BookDetailsPagePageProps) {
     const { id }: { id: string } = await params;
 
-    const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`);
+    const res = await fetch(`https://api.api-store.workers.dev/api/fitlog/${id}`);
     const fitLog: FitDataType = await res.json();
 
 
@@ -19,7 +20,7 @@ export default async function BookDetailsPagePage({ params }: BookDetailsPagePag
 
     return (
         isSuccess ? <>
-            <section className="flex items-start gap-14 justify-between ">
+            <section className="flex lg:items-start gap-14 justify-between flex-col lg:flex-row items-center">
                 <div className="rounded-2xl overflow-hidden w-full">
                     <Image
                         src={fitLog.image}
@@ -31,11 +32,11 @@ export default async function BookDetailsPagePage({ params }: BookDetailsPagePag
 
                 <div className="w-full">
 
-                    <h1 className="pb-3 font-heading font-bold text-4xl">{fitLog.name.toUpperCase()} </h1>
+                    <h1 className="text-center lg:text-left pb-3 font-heading font-bold text-4xl">{fitLog.name.toUpperCase()} </h1>
 
-                    <p className="pb-5 text-dim leading-relaxed">{fitLog.description}</p>
+                    <p className="text-center lg:text-left pb-5 text-dim leading-relaxed">{fitLog.description}</p>
 
-                    <div className="pb-7 space-x-2.5">
+                    <div className="pb-7 space-x-2.5 text-center lg:text-left">
                         {
                             fitLog.muscleGroups.map(muscle =>
                                 <span key={muscle}

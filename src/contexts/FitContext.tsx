@@ -23,6 +23,8 @@ export interface FitContextType {
 
     sortBy: 'Rating' | 'Calories' | 'Duration';
     setSortBy: Dispatch<SetStateAction<'Rating' | 'Calories' | 'Duration'>>;
+    isDone: boolean;
+    handleIsDone: (name: string) => void;
 }
 
 
@@ -40,7 +42,18 @@ const FitContextProvider = ({ children }: { children: ReactNode }) => {
 
     const [sortBy, setSortBy] = useState<'Rating' | 'Calories' | 'Duration'>('Duration')
 
+    const [isDone, setIsDone] = useState<boolean>(false);
 
+    const handleIsDone = (name: string) => {
+        if (isDone) {
+            toast.warning(`${name} Alredy Marked as done`)
+        }
+        else {
+
+            toast.success(`Marked ${name} as done`)
+            setIsDone(true)
+        }
+    }
 
 
     const handleMyPlans = (plan: FitDataType): void => {
@@ -76,6 +89,7 @@ const FitContextProvider = ({ children }: { children: ReactNode }) => {
             const updatedPlans: FitDataType[] = myPlans.filter(myPlan => myPlan.id !== plan.id);
             setMyPlans(updatedPlans);
             toast.success(`${plan.name} is Successfully removed from Today's Plan`);
+            setIsDone(false);
         }
 
         if (removeFrom === 'savedPlans') {
@@ -108,22 +122,6 @@ const FitContextProvider = ({ children }: { children: ReactNode }) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     const contextValue = {
         myPlans: sortedMyPlans,
         savedPlans: sortedSavedPlans,
@@ -133,7 +131,9 @@ const FitContextProvider = ({ children }: { children: ReactNode }) => {
         handleMyPlans,
         handleRemove,
         sortBy,
-        setSortBy
+        setSortBy,
+        isDone,
+        handleIsDone
     };
 
 
