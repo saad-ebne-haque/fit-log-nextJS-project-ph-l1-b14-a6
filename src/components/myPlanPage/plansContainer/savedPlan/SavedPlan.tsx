@@ -11,9 +11,12 @@ export default function SavedPlan({ plans }: SavedPlanProps) {
 
     return (
         <>
-{
-    plans.map(plan=><SavedPlanCard key={plan.id} plan={plan}></SavedPlanCard>)
-}
+            <div className="space-y-4">
+
+                {
+                    plans.map(plan => <SavedPlanCard key={plan.id} plan={plan}></SavedPlanCard>)
+                }
+            </div>
         </>
     )
 }

@@ -26,7 +26,6 @@ const PlansContainer = () => {
                         ? <EmptyPlan></EmptyPlan>
                         : <SavedPlan plans={savedPlans}></SavedPlan>
             }
-            {/* <EmptyPlan></EmptyPlan> */}
         </>
     );
 };
