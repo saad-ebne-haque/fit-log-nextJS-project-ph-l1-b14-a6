@@ -95,9 +95,9 @@ export default async function BookDetailsPagePage({ params }: BookDetailsPagePag
 
                     <div className="mb-9">
 
-                        <h3 className=" font-extrabold">INSTRUCTIONS</h3>
+                        <h3 className=" font-extrabold text-center">INSTRUCTIONS</h3>
 
-                        <ol className="list-decimal space-y-3 mt-3 text-sm text-dim pl-3.5">
+                        <ol className="lg:list-decimal space-y-3 mt-3 text-sm text-dim lg:pl-3.5 text-center">
                             {
                                 fitLog.instructions.map((instruction, i) => <li key={i}
                                     className="pl-2">{instruction} </li>)

@@ -23,8 +23,8 @@ export interface FitContextType {
 
     sortBy: 'Rating' | 'Calories' | 'Duration';
     setSortBy: Dispatch<SetStateAction<'Rating' | 'Calories' | 'Duration'>>;
-    isDone: boolean;
-    handleIsDone: (name: string) => void;
+    // isDone: boolean;
+    handleIsDone: (name: string, isDone: boolean, setIsDone: Dispatch<SetStateAction<boolean>>) => void;
 }
 
 
@@ -42,9 +42,9 @@ const FitContextProvider = ({ children }: { children: ReactNode }) => {
 
     const [sortBy, setSortBy] = useState<'Rating' | 'Calories' | 'Duration'>('Duration')
 
-    const [isDone, setIsDone] = useState<boolean>(false);
 
-    const handleIsDone = (name: string) => {
+
+    const handleIsDone = (name: string, isDone: boolean, setIsDone: Dispatch<boolean>) => {
         if (isDone) {
             toast.warning(`${name} Alredy Marked as done`)
         }
@@ -89,7 +89,7 @@ const FitContextProvider = ({ children }: { children: ReactNode }) => {
             const updatedPlans: FitDataType[] = myPlans.filter(myPlan => myPlan.id !== plan.id);
             setMyPlans(updatedPlans);
             toast.success(`${plan.name} is Successfully removed from Today's Plan`);
-            setIsDone(false);
+            // setIsDone(false);
         }
 
         if (removeFrom === 'savedPlans') {
@@ -132,7 +132,7 @@ const FitContextProvider = ({ children }: { children: ReactNode }) => {
         handleRemove,
         sortBy,
         setSortBy,
-        isDone,
+        // isDone,
         handleIsDone
     };
 
