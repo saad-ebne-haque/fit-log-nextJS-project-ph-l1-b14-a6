@@ -11,7 +11,7 @@ export default function FitLogCard({ fitLog }: FitLogCardProps) {
 
     return (
         <>
-            <Link href={`/books/${fitLog.id}`}>
+            <Link href={`/plans/${fitLog.id}`}>
                 <div className="bg-[#15171d] border border-[#222630] rounded-2xl w-full cursor-pointer">
                     <div className="w-auto h-75 rounded-t-2xl overflow-hidden">
                         <div className="w-full h-full bg-top bg-no-repeat bg-cover transition-transform duration-500 hover:scale-105" style={{ backgroundImage: `url(${fitLog.image})` }}></div>
