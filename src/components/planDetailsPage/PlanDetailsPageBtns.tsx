@@ -5,11 +5,11 @@ import FitDataType from "@/types/FitDataType.type";
 import { Bookmark, CalendarPlus2 } from "lucide-react";
 import { useContext } from "react";
 
-export interface BookDetailsPageBtnsProps {
+export interface PlanDetailsPageBtnsProps {
     plan: FitDataType;
 }
 
-export default function BookDetailsPageBtns({ plan }: BookDetailsPageBtnsProps) {
+export default function PlanDetailsPageBtns({ plan }: PlanDetailsPageBtnsProps) {
     const { handleMyPlans, handleSavedPlans } = useContext(FitContext) as FitContextType;
     return (
         <>

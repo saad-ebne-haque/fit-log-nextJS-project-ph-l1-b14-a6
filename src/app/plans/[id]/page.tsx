@@ -1,27 +1,68 @@
 
-import BookDetailsPageBtns from "@/components/planDetailsPage/PlanDetailsPageBtns";
-import FitDataType from "@/types/FitDataType.type";
-import { AlertCircle, ArrowLeft } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
 
-export interface BookDetailsPagePageProps {
+import PlanDetailsPageBtns from "@/components/planDetailsPage/PlanDetailsPageBtns";
+import FitDataType from "@/types/FitDataType.type";
+import { Metadata } from "next";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+
+export interface PlanDetailsPagePageProps {
     params: Promise<{ id: string }>
 }
 
-export default async function BookDetailsPagePage({ params }: BookDetailsPagePageProps) {
+
+export const generateStaticParams = async () => {
+
+    const res = await fetch("https://api.api-store.workers.dev/api/fitlog");
+    const fitLogs: FitDataType[] = await res.json();
+
+    return fitLogs.map(fitlog =>
+    ({
+        id: String(fitlog.id)
+    })
+    );
+}
+
+export const generateMetadata = async ({ params }: PlanDetailsPagePageProps): Promise<Metadata> => {
+
+    const { id } = await params;
+
+    const res = await fetch(`https://api.api-store.workers.dev/api/fitlog/${id}`, { cache: 'no-store' });
+
+    if (!res.ok) {
+        return {
+            title: 'Plan Not Found',
+            description: 'The fitness plan you are looking for was not found.'
+        }
+    }
+
+    const fitLog: FitDataType = await res.json();
+
+    return (
+        {
+            title: `${fitLog.name} | Fit Log`,
+            description: fitLog.description
+        }
+    )
+
+
+}
+
+export default async function BookDetailsPagePage({ params }: PlanDetailsPagePageProps) {
     const { id }: { id: string } = await params;
 
-    const res = await fetch(`https://api.api-store.workers.dev/api/fitlog/${id}`);
+    const res = await fetch(`https://api.api-store.workers.dev/api/fitlog/${id}`, { cache: 'no-store' });
+    if (!res.ok) {
+        notFound();
+    }
     const fitLog: FitDataType = await res.json();
 
 
-    const isSuccess: boolean = String(id) === String(fitLog.id);
 
 
 
     return (
-        isSuccess ? <>
+        <>
             <section className="flex lg:items-start gap-14 justify-between flex-col lg:flex-row items-center">
                 <div className="rounded-2xl overflow-hidden w-full">
                     <Image
@@ -95,11 +136,11 @@ export default async function BookDetailsPagePage({ params }: BookDetailsPagePag
 
                     </div>
 
-                    <div className="mb-9">
+                    <div className="mb-9 flex flex-col items-center lg:items-start">
 
                         <h3 className=" font-extrabold text-center">INSTRUCTIONS</h3>
 
-                        <ol className="lg:list-decimal space-y-3 mt-3 text-sm text-dim lg:pl-3.5 text-center">
+                        <ol className="list-decimal space-y-3 mt-3 text-sm text-dim lg:pl-3.5 text-left">
                             {
                                 fitLog.instructions.map((instruction, i) => <li key={i}
                                     className="pl-2">{instruction} </li>)
@@ -108,7 +149,7 @@ export default async function BookDetailsPagePage({ params }: BookDetailsPagePag
 
                     </div>
 
-                    <BookDetailsPageBtns plan={fitLog}></BookDetailsPageBtns>
+                    <PlanDetailsPageBtns plan={fitLog}></PlanDetailsPageBtns>
 
                 </div>
 
@@ -117,26 +158,6 @@ export default async function BookDetailsPagePage({ params }: BookDetailsPagePag
 
 
 
-            :
 
-
-            <>
-            <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4 py-16">
-                <div className="bg-[#151922] border border-[#232834] p-6 rounded-3xl max-w-md w-full shadow-xl flex flex-col items-center space-y-4">
-                    <div className="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 mb-2">
-                        <AlertCircle className="w-8 h-8" />
-                    </div>
-                    <h2 className="text-2xl font-bold font-heading">Plan Not Found</h2>
-                    <p className="text-dim text-sm">
-                        The fitness plan you are looking for does not exist or may have been removed.
-                    </p>
-                    <Link 
-                        href="/" 
-                        className="btn bg-brand text-black hover:bg-brand/80 rounded-full w-full mt-4 flex items-center justify-center gap-2 font-semibold">
-                        <ArrowLeft className="w-4 h-4" /> Back to Home
-                    </Link>
-                </div>
-            </div>
-        </>
     )
 }

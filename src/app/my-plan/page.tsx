@@ -2,8 +2,12 @@ import PlansContainer from "@/components/myPlanPage/plansContainer/PlansContaine
 import SortDropdown from "@/components/myPlanPage/sortDropdown/SortDropdown";
 import Stats from "@/components/myPlanPage/stats/Stats";
 import ToggleBtn from "@/components/myPlanPage/toggleBtn/ToggleBtn";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+    title: 'Fit Log | My Plan'
 
+}
 
 const MyPlanePage = () => {
 
