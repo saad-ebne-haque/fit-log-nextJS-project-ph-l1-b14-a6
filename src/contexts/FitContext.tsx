@@ -1,7 +1,7 @@
 'use client';
 
 import FitDataType from "@/types/FitDataType.type";
-import { createContext, Dispatch, ReactNode, SetStateAction, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useMemo, useState } from "react";
 import { toast } from "react-toastify";
 
 
@@ -20,6 +20,9 @@ export interface FitContextType {
     handleMyPlans: (plan: FitDataType) => void;
     handleSavedPlans: (plan: FitDataType) => void;
     handleRemove: (plan: FitDataType, removeFrom: 'myPlans' | 'savedPlans') => void;
+
+    sortBy: 'Rating' | 'Calories' | 'Duration';
+    setSortBy: Dispatch<SetStateAction<'Rating' | 'Calories' | 'Duration'>>;
 }
 
 
@@ -34,6 +37,11 @@ const FitContextProvider = ({ children }: { children: ReactNode }) => {
     const [savedPlans, setSavedPlans] = useState<FitDataType[]>([]);
 
     const [toggle, setToggle] = useState<boolean>(true);
+
+    const [sortBy, setSortBy] = useState<'Rating' | 'Calories' | 'Duration'>('Duration')
+
+
+
 
     const handleMyPlans = (plan: FitDataType): void => {
 
@@ -79,6 +87,23 @@ const FitContextProvider = ({ children }: { children: ReactNode }) => {
 
 
 
+    const sortedMyPlans = useMemo(() => {
+        return [...myPlans].sort((a: FitDataType, b: FitDataType): number => {
+            if (sortBy === 'Duration') return b.duration - a.duration;
+            if (sortBy === 'Calories') return b.caloriesBurned - a.caloriesBurned;
+            if (sortBy === 'Rating') return b.rating - a.rating;
+            return 0;
+        })
+    }, [sortBy, myPlans]);
+
+    const sortedSavedPlans = useMemo(() => {
+        return [...savedPlans].sort((a, b) => {
+            if (sortBy === 'Duration') return b.duration - a.duration;
+            if (sortBy === 'Calories') return b.caloriesBurned - a.caloriesBurned;
+            if (sortBy === 'Rating') return b.rating - a.rating;
+            return 0;
+        });
+    }, [savedPlans, sortBy]);
 
 
 
@@ -95,7 +120,21 @@ const FitContextProvider = ({ children }: { children: ReactNode }) => {
 
 
 
-    const contextValue = { myPlans, savedPlans, toggle, setToggle, handleSavedPlans, handleMyPlans, handleRemove };
+
+
+
+
+    const contextValue = {
+        myPlans: sortedMyPlans,
+        savedPlans: sortedSavedPlans,
+        toggle,
+        setToggle,
+        handleSavedPlans,
+        handleMyPlans,
+        handleRemove,
+        sortBy,
+        setSortBy
+    };
 
 
 
