@@ -2,6 +2,7 @@
 
 import FitDataType from "@/types/FitDataType.type";
 import FitLogCard from "./FitLogCard";
+import { notFound } from "next/navigation";
 
 
 
@@ -10,6 +11,9 @@ const TheLibrary = async () => {
     const res = await fetch('https://api.api-store.workers.dev/api/fitlog',
         { cache: 'force-cache' }
     );
+    if (!res.ok) {
+        notFound();
+    }
     const fitLogs: FitDataType[] = await res.json();
 
 
