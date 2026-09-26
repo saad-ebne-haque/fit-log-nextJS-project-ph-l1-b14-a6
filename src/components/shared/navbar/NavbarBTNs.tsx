@@ -10,12 +10,13 @@ import { useContext } from "react";
 const NavbarBTNs = () => {
     const context = useContext(FitContext) as FitContextType;
 
-    const { myPlans, savedPlans } = context;
+    const { myPlans, savedPlans, setToggle } = context;
 
 
     return (
         <>
             <Link
+                onClick={() => setToggle(true)}
                 href='/my-plan'
                 className="btn btn-ghost rounded-full text-[#d1d5db] font-medium"
             >
@@ -27,6 +28,7 @@ const NavbarBTNs = () => {
                 </span>
             </Link >
             <Link
+            onClick={() => setToggle(false)}
                 href='/my-plan'
                 className="btn btn-ghost rounded-full text-dim font-medium "
             >

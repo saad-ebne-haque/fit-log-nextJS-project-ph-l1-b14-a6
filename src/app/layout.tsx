@@ -4,7 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/shared/navbar/Navbar";
 import Footer from "@/components/shared/footer/Footer";
 import FitContextProvider from "@/contexts/FitContext";
-import { Bounce, ToastContainer } from "react-toastify";
+import { Flip, ToastContainer } from "react-toastify";
 
 const oswald = Oswald({
   variable: "--font-oswald",
@@ -44,7 +44,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 
 
         <ToastContainer
-          position="top-right"
+          position="bottom-right"
           autoClose={5000}
           hideProgressBar={false}
           newestOnTop={false}
@@ -54,7 +54,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           draggable
           pauseOnHover
           theme="dark"
-          transition={Bounce}
+          transition={Flip}
         />
       </body>
     </html>

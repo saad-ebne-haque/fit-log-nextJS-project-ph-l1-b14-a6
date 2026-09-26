@@ -1,4 +1,4 @@
-import EmptyPlan from "@/components/myPlanPage/emptyPlan/EmptyPlan";
+import PlansContainer from "@/components/myPlanPage/plansContainer/PlansContainer";
 import SortDropdown from "@/components/myPlanPage/sortDropdown/SortDropdown";
 import Stats from "@/components/myPlanPage/stats/Stats";
 import ToggleBtn from "@/components/myPlanPage/toggleBtn/ToggleBtn";
@@ -26,9 +26,9 @@ const MyPlanePage = () => {
                 </div>
 
 
-                <EmptyPlan></EmptyPlan>
 
 
+                <PlansContainer></PlansContainer>
 
 
             </section>
