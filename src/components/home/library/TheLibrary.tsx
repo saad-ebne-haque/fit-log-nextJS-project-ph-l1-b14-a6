@@ -1,8 +1,9 @@
-// import { Suspense } from "react";
+import { Suspense } from "react";
 
 import FitDataType from "@/types/FitDataType.type";
 import FitLogCard from "./FitLogCard";
 import { notFound } from "next/navigation";
+import Loading from "./Loading";
 
 
 
@@ -28,15 +29,15 @@ const TheLibrary = async () => {
 
 
                 {/* Card Container */}
-                {/* <Suspense> */}
+                <Suspense fallback={<Loading></Loading>}>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {
-                        fitLogs.map((fitLog: FitDataType) => <FitLogCard key={fitLog.id} fitLog={fitLog}></FitLogCard>)
-                    }
-                </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {
+                            fitLogs.map((fitLog: FitDataType) => <FitLogCard key={fitLog.id} fitLog={fitLog}></FitLogCard>)
+                        }
+                    </div>
 
-                {/* </Suspense> */}
+                </Suspense>
 
             </section>
 

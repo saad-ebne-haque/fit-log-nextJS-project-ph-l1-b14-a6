@@ -26,7 +26,7 @@ export default function MarkAsDoneBtn({ plan }: MarkAsDoneBtnProps) {
                     className={`flex items-center gap-1.5 font-semibold text-xs btn  rounded-full  w-40 ${isDone ? 'bg-[#a3ca05] text-[#2e2d2d]' : 'text-black bg-brand'}`}>
                     {isDone ?
                         <>
-                            <CheckCheckIcon className="w-3.5"></CheckCheckIcon> Already Marked
+                            <CheckCheckIcon className="w-3.5"></CheckCheckIcon> Already Done
                         </>
                         :
                         <>
