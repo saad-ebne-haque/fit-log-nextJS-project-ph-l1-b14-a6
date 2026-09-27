@@ -37,7 +37,7 @@ export default function TodaysPlanCard({ plan }: TodaysPlanCardProps) {
                 </div>
                 <div className="flex items-center gap-3">
                     <Link href={`/plans/${plan.id}`} className="btn btn-ghost text-xs font-normal border border-[#374151] rounded-full">View Details</Link>
-                    <MarkAsDoneBtn name={plan.name}></MarkAsDoneBtn>
+                    <MarkAsDoneBtn plan={plan}></MarkAsDoneBtn>
                     <RemoveBtn plan={plan} removeFrom="myPlans" clsName='hidden lg:block'></RemoveBtn>
                 </div>
             </div >

@@ -2,15 +2,19 @@
 
 import { FitContext, FitContextType } from "@/contexts/FitContext";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useSyncExternalStore } from "react";
 
 
-
+const emptySubscribe = () => () => { };
 
 const NavbarBTNs = () => {
     const context = useContext(FitContext) as FitContextType;
 
     const { myPlans, savedPlans, setToggle } = context;
+    const isLoaded = useSyncExternalStore(
+        emptySubscribe, () => true, () => false
+    )
+
 
 
     return (
@@ -24,11 +28,11 @@ const NavbarBTNs = () => {
                 <span
                     className="badge badge-lg bg-brand text-background  rounded-full"
                 >
-                    {myPlans.length}
+                    {isLoaded ? myPlans.length : 0}
                 </span>
             </Link >
             <Link
-            onClick={() => setToggle(false)}
+                onClick={() => setToggle(false)}
                 href='/my-plan'
                 className="btn btn-ghost rounded-full text-dim font-medium "
             >
@@ -36,7 +40,7 @@ const NavbarBTNs = () => {
                 <span
                     className="badge badge-outline badge-lg bg-transparent border-[1.5px] border-[#2D313B] rounded-full"
                 >
-                    {savedPlans.length}
+                    {isLoaded ? savedPlans.length : 0}
                 </span>
             </Link>
 

@@ -1,7 +1,8 @@
 'use client';
 import { FitContext, FitContextType } from "@/contexts/FitContext";
+import FitDataType from "@/types/FitDataType.type";
 import { CheckCheckIcon, CheckIcon } from "lucide-react";
-import { useContext, useState } from "react";
+import { useContext, } from "react";
 
 
 
@@ -9,16 +10,16 @@ import { useContext, useState } from "react";
 
 
 export interface MarkAsDoneBtnProps {
-    name: string
+    plan: FitDataType;
 }
 
-export default function MarkAsDoneBtn({ name }: MarkAsDoneBtnProps) {
-    const { handleIsDone } = useContext(FitContext) as FitContextType;
-    const [isDone, setIsDone] = useState<boolean>(false)
+export default function MarkAsDoneBtn({ plan }: MarkAsDoneBtnProps) {
+    const { handleMarkAsDone, alreadyDone } = useContext(FitContext) as FitContextType;
+    const isDone: boolean = alreadyDone.some(data => data.id === plan.id)
     return (
         <>
             <div
-                onClick={() => handleIsDone(name, isDone, setIsDone)}  >
+                onClick={() => handleMarkAsDone(plan)}  >
 
                 <button
                     disabled={isDone}
