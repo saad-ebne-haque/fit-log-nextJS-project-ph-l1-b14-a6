@@ -135,37 +135,22 @@ const FitContextProvider = ({ children, }: { children: ReactNode; }) => {
     const myPlans = useSyncExternalStore(myPlansStore.subscribe, myPlansStore.getSnapshot, myPlansStore.getServerSnapshot);
 
 
-    const savedPlans = useSyncExternalStore(
-        savedPlansStore.subscribe,
-        savedPlansStore.getSnapshot,
-        savedPlansStore.getServerSnapshot
-    );
-
-
- 
-    const alreadyDone = useSyncExternalStore(
-        alreadyDoneStore.subscribe,
-        alreadyDoneStore.getSnapshot,
-        alreadyDoneStore.getServerSnapshot
-    );
+    const savedPlans = useSyncExternalStore(savedPlansStore.subscribe, savedPlansStore.getSnapshot, savedPlansStore.getServerSnapshot);
 
 
 
-    const handleMyPlans = (
-        plan: FitDataType
-    ): void => {
+    const alreadyDone = useSyncExternalStore(alreadyDoneStore.subscribe, alreadyDoneStore.getSnapshot, alreadyDoneStore.getServerSnapshot);
 
-        const alreadyAdded = myPlans.some(
-            (myPlan) =>
-                myPlan.id === plan.id
-        );
+
+
+    const handleMyPlans = (plan: FitDataType): void => {
+
+        const alreadyAdded = myPlans.some((myPlan) => myPlan.id === plan.id);
 
 
         if (alreadyAdded) {
 
-            toast.error(
-                `${plan.name} is already added to My Plan`
-            );
+            toast.error(`${plan.name} is already added to My Plan`);
 
             return;
         }
@@ -173,98 +158,66 @@ const FitContextProvider = ({ children, }: { children: ReactNode; }) => {
 
         if (myPlans.length >= 5) {
 
-            toast.warning(
-                "You Already added 5 plans for today"
-            );
+            toast.warning("You Already added 5 plans for today");
 
             return;
         }
 
 
-        const updatedPlans = [
-            ...myPlans,
-            plan,
-        ];
+        const updatedPlans = [...myPlans, plan,];
 
 
-        myPlansStore.setValue(
-            updatedPlans
-        );
+        myPlansStore.setValue(updatedPlans);
 
 
-        toast.success(
-            `${plan.name} is added to My Plan`
-        );
+        toast.success(`${plan.name} is added to My Plan`);
 
     };
 
 
-   
 
-    const handleSavedPlans = (
-        plan: FitDataType
-    ): void => {
 
-        const alreadyAdded =
-            savedPlans.some(
-                (savedPlan) =>
-                    savedPlan.id === plan.id
-            );
+    const handleSavedPlans = (plan: FitDataType): void => {
+
+
+        const alreadyAdded = savedPlans.some((savedPlan) => savedPlan.id === plan.id);
 
 
         if (alreadyAdded) {
 
-            toast.error(
-                `${plan.name} is already added to Saved Plan`
-            );
+            toast.error(`${plan.name} is already added to Saved Plan`);
 
             return;
         }
 
 
-        const updatedPlans = [
-            ...savedPlans,
-            plan,
-        ];
+        const updatedPlans = [...savedPlans, plan];
 
 
-        savedPlansStore.setValue(
-            updatedPlans
-        );
+        savedPlansStore.setValue(updatedPlans);
 
 
-        toast.success(
-            `${plan.name} is added to Saved Plan`
-        );
+        toast.success(`${plan.name} is added to Saved Plan`);
 
     };
 
 
-    
-
-    const [toggle, setToggle] =
-        useState<boolean>(true);
 
 
-   
-
-    const [sortBy, setSortBy] =
-        useState<
-            "Rating" | "Calories" | "Duration"
-        >("Duration");
+    const [toggle, setToggle] = useState<boolean>(true);
 
 
-   
 
-    const handleMarkAsDone = (
-        plan: FitDataType
-    ) => {
 
-        const alreadyAdded =
-            alreadyDone.some(
-                (fitlog) =>
-                    fitlog.id === plan.id
-            );
+    const [sortBy, setSortBy] = useState<"Rating" | "Calories" | "Duration">("Duration");
+
+
+
+
+    const handleMarkAsDone = (plan: FitDataType) => {
+
+        const alreadyAdded = alreadyDone.some((fitlog) => fitlog.id === plan.id
+        );
 
 
         if (alreadyAdded) {
@@ -277,52 +230,32 @@ const FitContextProvider = ({ children, }: { children: ReactNode; }) => {
         }
 
 
-        const updatedPlans = [
-            ...alreadyDone,
-            plan,
-        ];
+        const updatedPlans = [...alreadyDone, plan,];
 
 
-       
-        alreadyDoneStore.setValue(
-            updatedPlans
-        );
+
+        alreadyDoneStore.setValue(updatedPlans);
 
 
-        toast.success(
-            `Marked ${plan.name} as done`
-        );
+        toast.success(`Marked ${plan.name} as done`);
 
     };
 
 
-  
 
-    const handleRemove = (
-        plan: FitDataType,
-        removeFrom:
-            | "myPlans"
-            | "savedPlans"
-    ): void => {
+
+    const handleRemove = (plan: FitDataType, removeFrom: "myPlans" | "savedPlans"): void => {
 
 
         if (removeFrom === "myPlans") {
 
-            const updatedPlans =
-                myPlans.filter(
-                    (myPlan) =>
-                        myPlan.id !== plan.id
-                );
+            const updatedPlans = myPlans.filter((myPlan) => myPlan.id !== plan.id);
 
 
-            myPlansStore.setValue(
-                updatedPlans
-            );
+            myPlansStore.setValue(updatedPlans);
 
 
-            toast.success(
-                `${plan.name} is Successfully removed from Today's Plan`
-            );
+            toast.success(`${plan.name} is Successfully removed from Today's Plan`);
 
 
             return;
@@ -331,16 +264,10 @@ const FitContextProvider = ({ children, }: { children: ReactNode; }) => {
 
         if (removeFrom === "savedPlans") {
 
-            const updatedPlans =
-                savedPlans.filter(
-                    (savedPlan) =>
-                        savedPlan.id !== plan.id
-                );
+            const updatedPlans = savedPlans.filter((savedPlan) => savedPlan.id !== plan.id);
 
 
-            savedPlansStore.setValue(
-                updatedPlans
-            );
+            savedPlansStore.setValue(updatedPlans);
 
 
             toast.success(
@@ -356,86 +283,66 @@ const FitContextProvider = ({ children, }: { children: ReactNode; }) => {
 
     const sortedMyPlans = useMemo(() => {
 
-        return [...myPlans].sort(
-            (a, b) => {
+        return [...myPlans].sort((a, b) => {
 
-                if (sortBy === "Duration") {
+            if (sortBy === "Duration") {
 
-                    return (
-                        b.duration -
-                        a.duration
-                    );
-
-                }
-
-
-                if (sortBy === "Calories") {
-
-                    return (
-                        b.caloriesBurned -
-                        a.caloriesBurned
-                    );
-
-                }
-
-
-                if (sortBy === "Rating") {
-
-                    return (
-                        b.rating -
-                        a.rating
-                    );
-
-                }
-
-
-                return 0;
+                return (b.duration - a.duration);
 
             }
+
+
+            if (sortBy === "Calories") {
+
+                return (b.caloriesBurned - a.caloriesBurned);
+
+            }
+
+
+            if (sortBy === "Rating") {
+
+                return (b.rating - a.rating);
+
+            }
+
+
+            return 0;
+
+        }
         );
 
     }, [myPlans, sortBy]);
 
 
-    
+
     const sortedSavedPlans = useMemo(() => {
 
-        return [...savedPlans].sort(
-            (a, b) => {
+        return [...savedPlans].sort((a, b) => {
 
-                if (sortBy === "Duration") {
+            if (sortBy === "Duration") {
 
-                    return (
-                        b.duration -
-                        a.duration
-                    );
-
-                }
-
-
-                if (sortBy === "Calories") {
-
-                    return (
-                        b.caloriesBurned -
-                        a.caloriesBurned
-                    );
-
-                }
-
-
-                if (sortBy === "Rating") {
-
-                    return (
-                        b.rating -
-                        a.rating
-                    );
-
-                }
-
-
-                return 0;
+                return (b.duration - a.duration);
 
             }
+
+
+            if (sortBy === "Calories") {
+
+                return (b.caloriesBurned - a.caloriesBurned);
+
+            }
+
+
+            if (sortBy === "Rating") {
+
+                return (b.rating - a.rating);
+
+            }
+
+
+            return 0;
+
+        }
         );
 
     }, [savedPlans, sortBy]);
@@ -459,11 +366,7 @@ const FitContextProvider = ({ children, }: { children: ReactNode; }) => {
 
 
     return (
-        <FitContext.Provider
-            value={contextValue}
-        >
-            {children}
-        </FitContext.Provider>
+        <FitContext.Provider value={contextValue}>{children}</FitContext.Provider>
     );
 
 };
